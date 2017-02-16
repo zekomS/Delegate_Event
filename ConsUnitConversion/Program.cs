@@ -9,17 +9,19 @@ namespace ConsUnitConversion
     class Program
     {
         delegate double ConvertUnit(double value);
-        
-        
 
         public double MileToKm(double mile)
         {
-            return mile * 1.609344;
+            double km = mile * 1.609344;
+            Console.WriteLine($"{mile} miles = {Math.Round(km, 3)} km");
+            return km;
         }
 
         public double CelsiusToKelvin(double celsius)
         {
-            return celsius + 273.15;
+            double kelvin = celsius + 273.15;
+            Console.WriteLine($"{celsius} °C = {Math.Round(kelvin, 3)} Kelvin");
+            return kelvin;
         }
 
         static void Main(string[] args)
@@ -27,23 +29,24 @@ namespace ConsUnitConversion
             Program p = new Program();
             double input = 20f;
 
-            ConvertUnit cu = new ConvertUnit(p.MileToKm);
-            double km = cu(input);
-            Console.WriteLine($"{input} miles = {Math.Round(km, 3)} km");
+            ConvertUnit cu = null;
+            cu += p.MileToKm;
+            cu += p.CelsiusToKelvin;
+            cu += delegate (double pound)
+            {
+                double kg = pound * 0.45359237;
+                Console.WriteLine($"{pound} lbs = {Math.Round(kg, 3)} kg");
+                return kg;
+            };
 
-            cu = new ConvertUnit(p.CelsiusToKelvin);
-            double kelvin = cu(input);
-            Console.WriteLine($"{input} °C = {Math.Round(kelvin, 3)} Kelvin");
+            cu += cal =>
+            {
+                double kj = cal * 4.184;
+                Console.WriteLine($"{cal} cal = {Math.Round(kj, 3)} kJ");
+                return kj;
+            };
 
-            // anonieme methodenaanroep
-            cu = delegate (double lbs) { return lbs * 0.45359237; };
-            double kg = cu(input);
-            Console.WriteLine($"{input} lbs = {Math.Round(kg, 3)} kg");
-
-            // lambda expressie
-            cu = cal => cal * 4.184;
-            double kj = cu(input);
-            Console.WriteLine($"{input} cal = {Math.Round(kj, 3)} kJ");
+            cu?.Invoke(input);
 
             Console.ReadKey();
         }
