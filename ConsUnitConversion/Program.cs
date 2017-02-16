@@ -40,6 +40,11 @@ namespace ConsUnitConversion
             double kg = cu(input);
             Console.WriteLine($"{input} lbs = {Math.Round(kg, 3)} kg");
 
+            // lambda expressie
+            cu = cal => cal * 4.184;
+            double kj = cu(input);
+            Console.WriteLine($"{input} cal = {Math.Round(kj, 3)} kJ");
+
             Console.ReadKey();
         }
     }
