@@ -13,6 +13,7 @@ namespace ConsoleCafe
         {
             int numberOfPints = 10;
             PintDish pintDish = new PintDish(numberOfPints);
+            pintDish.PintStarted += PintDish_PintStarted;
 
             for (int i = 0; i < numberOfPints ; i++)
             {
@@ -27,6 +28,11 @@ namespace ConsoleCafe
             }
 
             Console.ReadKey();
+        }
+
+        private static void PintDish_PintStarted(object sender, EventArgs e)
+        {
+            Console.WriteLine($"Brewing Pint...");
         }
     }
 }
