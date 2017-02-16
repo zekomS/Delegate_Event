@@ -15,7 +15,11 @@ namespace ConsUnitConversion
         public double MileToKm(double mile)
         {
             return mile * 1.609344;
-            
+        }
+
+        public double CelsiusToKelvin(double celsius)
+        {
+            return celsius + 273.15;
         }
 
         static void Main(string[] args)
@@ -27,6 +31,9 @@ namespace ConsUnitConversion
             double km = cu(input);
             Console.WriteLine($"{input} miles = {Math.Round(km, 3)} km");
 
+            cu = new ConvertUnit(p.CelsiusToKelvin);
+            double kelvin = cu(input);
+            Console.WriteLine($"{input} °C = {Math.Round(kelvin, 3)} Kelvin");
 
             Console.ReadKey();
         }
