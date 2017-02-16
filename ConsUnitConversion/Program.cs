@@ -35,6 +35,11 @@ namespace ConsUnitConversion
             double kelvin = cu(input);
             Console.WriteLine($"{input} °C = {Math.Round(kelvin, 3)} Kelvin");
 
+            // anonieme methodenaanroep
+            cu = delegate (double lbs) { return lbs * 0.45359237; };
+            double kg = cu(input);
+            Console.WriteLine($"{input} lbs = {Math.Round(kg, 3)} kg");
+
             Console.ReadKey();
         }
     }
