@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace LibCafe
 {
+    public delegate void PintStartedHandler(object sender, EventArgs e);
     public delegate void PintCompletedHandler(object sender, PintCompletedArgs e);
 
     public class PintDish
     {
-        public EventHandler PintStarted;
+        public event PintStartedHandler PintStarted;
         public event PintCompletedHandler PintCompleted;
 
         private int pintCount;

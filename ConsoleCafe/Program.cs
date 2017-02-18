@@ -17,7 +17,7 @@ namespace ConsoleCafe
                 try
                 {
                     pintDish.AddPint();
-                    Console.WriteLine($"Pint {pintDish.PintCount} added");
+                    Console.WriteLine($"Pint {pintDish.PintCount} added\n\n");
                 } catch(Exception ex)
                 {
                     Console.WriteLine(ex.Message);
