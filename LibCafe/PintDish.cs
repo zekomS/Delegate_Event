@@ -28,10 +28,9 @@ namespace LibCafe
         public void AddPint()
         {
             if (pintCount >= MaxPints) throw new Exception("Dish full, order cancelled");
-            DateTime pintStarted = DateTime.Now;
             PintStarted?.Invoke(this, EventArgs.Empty);
             pintCount++;
-            PintCompleted?.Invoke(this, new PintCompletedArgs(pintStarted));
+            PintCompleted?.Invoke(this, new PintCompletedArgs());
         }
     }
 
@@ -45,7 +44,7 @@ namespace LibCafe
         public string Brand { get; }
         public string Waiter { get; }
 
-        public PintCompletedArgs(DateTime startTime)
+        public PintCompletedArgs()
         {
             Brand = Brands[random.Next(0, Brands.Length)];
             Waiter = Waiters[random.Next(0, Waiters.Length)];
