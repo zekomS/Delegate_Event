@@ -12,8 +12,7 @@ namespace ConsoleCafe
             pintDish.PintStarted += PintDish_PintStarted;
             pintDish.PintCompleted += PintDish_PintCompleted;
             pintDish.DishHalfWay += PintDish_DishHalfWay;
-            pintDish.DishCompleted += PintDish_DishCompleted;
-            //
+            pintDish.DishCompleted += PintDish_DishCompleted;            
             for (int i = 0; i < numberOfPints ; i++)
             {
                 try
