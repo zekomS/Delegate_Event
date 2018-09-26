@@ -9,11 +9,13 @@ namespace LibCafe
 {
     public delegate void PintStartedHandler(object sender, EventArgs e);
     public delegate void PintCompletedHandler(object sender, PintCompletedArgs e);
+    public delegate void DishHalfwayHandler(object sender, EventArgs e);
 
     public class PintDish
     {
         public event PintStartedHandler PintStarted;
         public event PintCompletedHandler PintCompleted;
+        public event DishHalfwayHandler DishHalfWay;
 
         private int pintCount;
 
@@ -28,6 +30,7 @@ namespace LibCafe
         public void AddPint()
         {
             if (pintCount >= MaxPints) throw new Exception("Dish full, order cancelled");
+            if (pintCount == MaxPints / 2) DishHalfWay?.Invoke(this, EventArgs.Empty);
             PintStarted?.Invoke(this, EventArgs.Empty);
             pintCount++;
             PintCompleted?.Invoke(this, new PintCompletedArgs());
