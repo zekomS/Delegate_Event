@@ -12,6 +12,7 @@ namespace ConsoleCafe
             pintDish.PintStarted += PintDish_PintStarted;
             pintDish.PintCompleted += PintDish_PintCompleted;
             pintDish.DishHalfWay += PintDish_DishHalfWay;
+            pintDish.DishCompleted += PintDish_DishCompleted;
 
             for (int i = 0; i < numberOfPints ; i++)
             {
@@ -26,6 +27,15 @@ namespace ConsoleCafe
             }
 
             Console.ReadKey();
+        }
+
+        private static void PintDish_DishCompleted(object sender, StopwatchArgs e)
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine($"Dish is completed!! Took you {e.stopwatch.ElapsedMilliseconds.ToString()} ms");
+            Console.ResetColor();
+            Console.WriteLine($"\n \n");
         }
 
         private static void PintDish_DishHalfWay(object sender, EventArgs e)
